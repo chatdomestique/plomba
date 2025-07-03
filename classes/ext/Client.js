@@ -39,7 +39,7 @@ export class Client extends EventEmitter {
 			this.initial.semaphore.increase();
 			this.initial.guildIds.push(guildId);
 		});
-		this.live.on("serverFinished", async () => {
+		this.live.once("serverFinished", async () => {
 			for (let i = 0; i < this.initial.guildIds.length; i++) {
 				const guildId = this.initial.guildIds[i];
 				const guild = await this.guilds.get(guildId);
