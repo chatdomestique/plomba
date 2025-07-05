@@ -38,6 +38,10 @@ export class LiveWebsocketClient extends EventEmitter {
 				break;
 			}
 		});
+
+		this.live.on("debug", async (str) => {
+			this.emit("debug", str);
+		});
 	}
 	login(token) {
 		this.applyEvents();
