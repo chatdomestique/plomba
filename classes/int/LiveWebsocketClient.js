@@ -33,9 +33,6 @@ export class LiveWebsocketClient extends EventEmitter {
 			case "serverFinished":
 				this.emit("serverFinished");
 				break;
-			case "guildAvailable":
-				this.emit("serverAuthentication", msg.payload);
-				break;
 			default:
 				this.emit("debug", `Unhandled event ${msg.type} received!`);
 				break;
