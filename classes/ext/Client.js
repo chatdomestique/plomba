@@ -25,10 +25,10 @@ export class Client extends EventEmitter {
 		// this.messages = new CacheMonster((objectId) => this.api.data.getMessageData(objectId));
 	}
 
-	async applyEvents() {
+	applyEvents() {
 		this.initial.semaphore.increase();
 
-		this.initial.semaphore.promise().then(() => {
+		this.initial.semaphore.promise().then(async () => {
 			this.emit("ready");
 			this.self = await this.users.get(this.live.self);
 		});
