@@ -36,7 +36,7 @@ export class Client extends EventEmitter {
 			this.emit("debug", `[Live] ${str}`);
 		});
 		this.live.on("self", async (userId) => {
-			this.self = await this.users.get(userId);
+			this.self = await this.users.get(this.live.self);
 		});
 		this.live.on("guildAvailable", (guildId) => {
 			this.initial.semaphore.increase();
