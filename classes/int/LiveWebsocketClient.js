@@ -15,6 +15,7 @@ export class LiveWebsocketClient extends EventEmitter {
 				if (msg.payload.success) {
 					this.emit("authStatus", true);
 					this.emit("debug", "Authentication successful");
+					this.emit("self", msg.payload.userId);
 				} else {
 					this.live.suicide();
 					this.emit("debug", "Authentication failed");
