@@ -30,7 +30,6 @@ export class Client extends EventEmitter {
 
 		this.initial.semaphore.promise().then(async () => {
 			this.emit("ready");
-			this.self = await this.users.get(this.live.self);
 		});
 
 		this.live.on("debug", (str) => {
@@ -41,6 +40,8 @@ export class Client extends EventEmitter {
 			this.initial.guildIds.push(guildId);
 		});
 		this.live.once("serverFinished", async () => {
+			this.self = await this.users.get(this.live.self);
+
 			for (let i = 0; i < this.initial.guildIds.length; i++) {
 				const guildId = this.initial.guildIds[i];
 				const guild = await this.guilds.get(guildId);
